@@ -38,7 +38,9 @@ public class Main {
 }
 // Outputs 8 (5 + 3)
 
-
+// Types of Methods: Pre-defined (syntax), Pre-defined (library), Static (direct call; no object needs to be created; property of class not object), Instance (need to create an object for calling), Abstract (declared without body), Final (cannot be over-ridden), Synchronised (used in multi-threading to prevent concurrent access), 
+// this keyword in method references to class variable and not the instance variable of method (this.var)
+// variable arguments: <datatype>... var; initialises as an array
 
 // Method Overloading
 // also called compile-time polymorphism
@@ -66,6 +68,77 @@ public class Test {
         System.out.println(c.add(2, 3, 4));      // calls int add(int, int, int)
     }
 }
+
+// Class Components: Fields/ Variables, Methods (Functions), Constructors, Blocks, Nested/ Inner Class, Objects
+// Types of Classes: Concrete (regular), Abstract, Final (cannot be inherited), static nested (doesn't need object creation of outer class), inner, anonymous, enum (defined for declaring constants)
+
+// Blocks in classes
+class Demo {
+    // Instance Block: runs every time the object is created and runs before the constructor (despite orientation)
+    { 
+        System.out.println("Instance block executed");
+    }
+    // Constructor
+    Demo() {
+        System.out.println("Constructor executed");
+    }
+    public static void main(String[] args) {
+        new Demo();
+        new Demo();
+    }
+} // executed every time object is created
+//Instance block executed
+//Constructor executed
+//Instance block executed
+//Constructor executed
+class StaticBlockDemo { // Static Block
+    static {
+        System.out.println("Static block executed");
+    }
+    public static void main(String[] args) {
+        System.out.println("Main method executed");
+    }
+}
+
+// Anonymous class using abstract class
+abstract class Greeting {
+    abstract void sayHello();
+}
+public class Demo {
+    public static void main(String[] args) {
+        // Anonymous class implementation
+        Greeting g = new Greeting() {
+            void sayHello() {
+                System.out.println("Hello from Anonymous Class!");
+            }
+        };
+        g.sayHello();
+    }
+}
+
+// Anonymous Class using interface
+abstract class Greeting {
+    abstract void sayHello();
+}
+public class Demo {
+    public static void main(String[] args) {
+        // Anonymous class implementation
+        Greeting g = new Greeting() {
+            void sayHello() {
+                System.out.println("Hello from Anonymous Class!");
+            }
+        };
+        g.sayHello();
+    }
+}
+
+// Common real use of anonymous class
+new Thread() {
+    public void run() {
+        System.out.println("Thread running...");
+    }
+}.start();
+
 
 // Type-casting to larger datatype
 class Demo {
@@ -211,6 +284,23 @@ public class Main {
 }
 // Outputs 1969 Mustang
 
+// Constructors in Inheritance: Parent class constructor is considered before child class constructor
+class Parent {
+    Parent() { System.out.println("Parent constructor"); }
+}
+class Child extends Parent {
+    Child() { System.out.println("Child constructor"); }
+}
+public class Main {
+    public static void main(String[] args) {
+        new Child();
+    }
+}
+//Parent constructor
+//Child constructor
+
+
+
 
 // this keyword: refers to current object in method/ constructor; often used to reduce confusion when attributes have the same name as method/ constructor arguments
 public class Main {
@@ -257,3 +347,43 @@ public class Main {
 // Outputs: 
 // 2020 Corvette
 // 1969 Mustang
+
+
+// super keyword
+class Parent {
+    void display() {
+        System.out.println("Parent display");
+    }
+}
+class Child extends Parent {
+    void display() {
+        System.out.println("Child display");
+    }
+    void show() {
+        display();         // calls Child's display
+        super.display();   // calls Parent's display
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.show();
+    }
+}
+class Parent {
+    Parent() {
+        System.out.println("Parent constructor");
+    }
+}
+class Child extends Parent {
+    Child() {
+        super(); // optional here because parent constructor is always executed
+        System.out.println("Child constructor");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        new Child();
+    }
+}
