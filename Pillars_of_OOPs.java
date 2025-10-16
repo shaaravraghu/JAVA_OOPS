@@ -67,7 +67,40 @@ public class Main {
 }
 // Single A → B; Multilevel A → B → C; Hierarchical A → B, C; Multiple A, B → C (not supported by Java); Hybrid
 // declaring a class as final doesn't allow inheritance
+// super(): calls the parent constructor
+// super.variable_name: accesses local variable of the super class; super.method_name(): access the method defined in the parent class
 
+class Animal {
+    String name = "Animal";
+    Animal() {
+        System.out.println("Animal constructor called");
+    }
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+class Dog extends Animal {
+    String name = "Dog";
+    Dog() {
+        super(); // Calls Animal constructor
+        System.out.println("Dog constructor called");
+    }
+    void showName() {
+        System.out.println("Parent name: " + super.name); // Access parent variable
+        System.out.println("Child name: " + name);
+    }
+    void eat() {
+        super.eat(); // Call parent method
+        System.out.println("Dog eats bones");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.showName();
+        d.eat();
+    }
+}
 
 // Polymorphism
 // same method behaves differently in different context
@@ -130,9 +163,9 @@ public class Main {
     System.out.println(myInner.y + myOuter.x);
   }
 }
+@Override // used to write a syntax for the program to verify proper overriding and not overloading (can be ignored)
 
-
-// private inner class
+// private inner class: handle has to be defined inside 
 class Bank {
     private class Locker {
         void accessLocker() {
@@ -294,3 +327,4 @@ class Main {
   }
 
 }
+
