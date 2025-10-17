@@ -317,6 +317,10 @@ class TestEnum {
     }
 }
 
+// class_name.constant_name: to access the constant value
+// class_name.constant_name.method_name: access method with constant as parameter
+// constant_name in CAPS
+
 
 import java.util.Scanner;  // Import the Scanner class
 class Main {
@@ -327,4 +331,5 @@ class Main {
   }
 
 }
+
 
