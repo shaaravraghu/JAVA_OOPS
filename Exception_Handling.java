@@ -6,8 +6,8 @@
 2. Based on Throwable Hierarchy
 2.1 Error
 2.2 Exception
-2.2.1 Checked
-2.2.2 Unchecked
+2.2.1 Checked: handled by try-catch block
+2.2.2 Unchecked: no try-catch block
 */
 
 
@@ -66,6 +66,21 @@ class MultiThrowsExample {
             obj.riskyMethod();
         } catch (IOException | ArithmeticException e) {
             System.out.println("Exception caught: " + e);
+        }
+    }
+}
+import java.io.*;
+class Example3 {
+    void readFile() throws IOException {
+        FileReader fr = new FileReader("file.txt"); // might throw IOException
+        System.out.println("File opened successfully!");
+    }
+    public static void main(String[] args) {
+        Example3 e = new Example3();
+        try {
+            e.readFile();
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
         }
     }
 }
